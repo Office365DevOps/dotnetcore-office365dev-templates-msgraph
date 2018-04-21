@@ -15,7 +15,6 @@ request.Headers.Authorization = new AuthenticationHeaderValue("Bearer",token);
 
 //reply url msalcfc3a225-ac57-45c9-aacd-969551f4825f://auth
 
-
 dotnet nuget push .\chenxizhang.dotnetcore.msgraph.console.CSharp.1.0.0.nupkg -s https://www.nuget.org/api/v2/package
 ---
 # dotnetcore-office365dev-templates
