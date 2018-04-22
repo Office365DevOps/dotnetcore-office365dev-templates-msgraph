@@ -16,8 +16,8 @@
 
 |模板|模板标识|模板短名称|国际版|国内版|
 |:---|:---|:---|:---|:---|
-|控制台应用程序(Graph)|chenxizhang.dotnetcore.msgraph.console.CSharp|[graphconsole](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-console)|支持|支持|
-|无人值守应用程序(Graph)|chenxizhang.dotnetcore.msgraph.serviceapp.CSharp|[graphserviceapp](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-serviceapp)|支持|支持|
+|控制台应用程序(Graph)|chenxizhang.<br />dotnetcore.<br />msgraph.<br />console.<br />CSharp|[graphconsole](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/dotnetcore-graph-console/README.md)|支持|支持|
+|无人值守应用程序(Graph)|chenxizhang.<br />dotnetcore.<br />msgraph.<br />serviceapp.<br />CSharp|[graphserviceapp](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-serviceapp/README.md)|支持|支持|
 |ASP.NET Web应用程序(Graph)|即将提供|即将提供|支持|支持|
 |ASP.NET MVC应用程序(Graph)|即将提供|即将提供|支持|支持|
 |ASP.NET Web API 应用程序(Graph)|即将提供|即将提供|支持|支持|
