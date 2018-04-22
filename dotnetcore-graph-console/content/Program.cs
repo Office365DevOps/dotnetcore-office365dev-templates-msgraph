@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+作者：陈希章 Ares Chen
+时间：2018年4月21日
+说明：
+    这是一个可以快速通过Microsoft Graph访问到Office 365资源的控制台应用程序模板。
+    它使用基于设备的身份验证方式，并且同时支持国际版和国内版。
+
+关于此模板的使用以及问题反馈，请访问 https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-console
+Office 365开发入门指南，请参考 https://github.com/chenxizhang/office365dev 
+更多模板请参考 https://github.com/chenxizhang/dotnetcore-office365dev-templates 
+*/
+using System;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.Graph;

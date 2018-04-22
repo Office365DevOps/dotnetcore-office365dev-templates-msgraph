@@ -1,4 +1,16 @@
-﻿using System;
+﻿/*
+作者：陈希章 Ares Chen
+时间：2018年4月22日
+说明：
+    这是一个可以快速通过Microsoft Graph访问到Office 365资源的服务应用程序模板，通常理解为无人值守自动运行的程序。
+    由于是一个无人值守的应用程序，所以不需要用户输入账号或者密码，该模板使用了应用程序密钥作为身份凭据。为了使用该应用程序，你需要得到Office 365管理员的授权确认。
+    目前该模板同时支持国际版和国内版。
+
+关于此模板的使用以及问题反馈，请访问 https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-serviceapp
+Office 365开发入门指南，请参考 https://github.com/chenxizhang/office365dev 
+更多模板请参考 https://github.com/chenxizhang/dotnetcore-office365dev-templates 
+*/
+using System;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.Graph;
 using System.Threading.Tasks;
