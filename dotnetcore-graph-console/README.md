@@ -24,7 +24,7 @@
 
 ## 安装
 
-你通过 `dotnet new -u chenxizhang.dotnetcore.msgraph.console.CSharp` 即可安装这个项目模板。
+你通过 `dotnet new -i chenxizhang.dotnetcore.msgraph.console.CSharp` 即可安装这个项目模板。
 
 ## 使用
 
