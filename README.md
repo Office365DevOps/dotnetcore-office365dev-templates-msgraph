@@ -27,7 +27,7 @@
 
 ## 先决条件
 
-要使用这些模板，你只需要在开发机器上面安装了 .NET Core SDK 版本2.0 及以上即可。请通过官方网站提示到的方式进行下载和安装(<https://www.microsoft.com/net/download/>)。请注意，我们现在是跨平台的哦，无论Windows，还是Mac，或是Linux都支持进行.NET Core开发。
+要使用这些模板，你只需要在开发机器上面安装了 .NET Core SDK 版本2.0 及以上即可。请通过官方网站提示到的方式进行下载和安装(<https://www.microsoft.com/net/download/>)。请注意，我们现在是跨平台的哦，无论Windows，还是Mac，或是Linux都支持进行.NET Core开发，与此同时, .NET Core应用程序可以使用`docker`进行部署，其开发和部署、运营流程结合`devops`也是如丝般润滑的。
 
 另外，你可能至少需要一款代码编辑器，你可以安装Visual Studio，也可以使用Visual Studio Code，甚至是任何一个文本编辑器。我是使用 [Visual Studio Code](http://code.visualstudio.com/).
 
