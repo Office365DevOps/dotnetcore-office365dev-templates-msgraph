@@ -1,0 +1,72 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Ares Chen | 陈希章",
+    "classifications": [
+        "Common",
+        "Console"
+    ],
+    "identity": "chenxizhang.dotnetcore.msgraph.serviceapp.CSharp",
+    "name": "Service application using Microsoft Graph",
+    "groupIdentity": "chenxizhang.dotnetcore.msgraph.serviceapp",
+    "shortName": "graphserviceapp",
+    "sourceName": "content",
+    "primaryOutputs": [
+        {
+            "path": "content.csproj"
+        }
+    ],
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "postActions": [
+        {
+            "description": "dotnet restore",
+            "manualInstructions": [
+                {
+                    "text": "Run 'dotnet restore'"
+                }
+            ],
+            "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+            "continueOnError": true
+        }
+    ],
+    "symbols": {
+        "instance": {
+            "type": "parameter",
+            "datatype": "choice",
+            "choices": [
+                {
+                    "choice": "global"
+                },
+                {
+                    "choice": "gallatin"
+                }
+            ],
+            "defaultValue": "global"
+        },
+        "clientid": {
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": "019dc431-2ad8-4b8e-a141-499f1ebcf737",
+            "replaces": "{{clientId}}"
+        },
+        "secret": {
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": "wvfLJHK456#}oadnKTG16{{",
+            "replaces": "{{secret}}"
+        },
+        "tenantid": {
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": "59723f6b-2d14-49fe-827a-8d04f9fe7a68",
+            "replaces": "{{tenantid}}"
+        },
+        "version": {
+            "type": "parameter",
+            "replaces": "{{version}}",
+            "defaultValue": "v1.0"
+        }
+    }
+}

@@ -43,8 +43,7 @@
                     "choice": "gallatin"
                 }
             ],
-            "defaultValue": "global",
-            "isRequired": true
+            "defaultValue": "global"
         },
         "clientid": {
             "type": "parameter",
@@ -56,39 +55,6 @@
             "type": "parameter",
             "replaces": "{{version}}",
             "defaultValue": "v1.0"
-        }
-    },
-    "CustomOperations": {
-        "type": "conditional",
-        "configuration": {
-            "if": [
-                "//#if"
-            ],
-            "else": [
-                "//#else"
-            ],
-            "elseif": [
-                "//#elseif"
-            ],
-            "endif": [
-                "//#endif"
-            ],
-            "actionableIf": [
-                "////#if"
-            ],
-            "actionableElse": [
-                "////#else"
-            ],
-            "actionableElseif": [
-                "////#elseif"
-            ],
-            "actions": [
-                "cStyleUncomment",
-                "cStyleReduceComment"
-            ],
-            "trim": true,
-            "wholeLine": true,
-            "evaluator": "C++"
         }
     }
 }

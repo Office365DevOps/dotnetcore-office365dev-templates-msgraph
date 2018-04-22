@@ -10,13 +10,8 @@ namespace content
     {
         static void Main(string[] args)
         {
-            #region 
-            var authority="";
-            var resource="";
-            var deviceloginaddr="";
-
-            #endregion
-
+            #region parameters
+            string authority,resource,deviceloginaddr;
             //#if(instance=="gallatin")
             authority ="https://login.chinacloudapi.cn/common/oauth2";
             resource ="https://microsoftgraph.chinacloudapi.cn";
@@ -28,10 +23,13 @@ namespace content
             deviceloginaddr="https://aka.ms/devicelogin";     
        
             //#endif
+            #endregion
+
+
 
             var token = "";
 
-            var client = new GraphServiceClient(new DelegateAuthenticationProvider(async (request) =>
+            var client = new GraphServiceClient(new DelegateAuthenticationProvider((request) =>
             {
                 if (string.IsNullOrEmpty(token))
                 {
@@ -42,10 +40,10 @@ namespace content
                 }
 
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                await Task.FromResult(1);
+                return Task.FromResult(0);
             }))
             {
-                BaseUrl = $"{resource}/v1.0"
+                BaseUrl = $"{resource}/{{version}}"
             };
 
             var user = client.Me.Request().GetAsync().Result;
