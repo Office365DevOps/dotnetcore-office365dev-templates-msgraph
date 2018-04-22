@@ -22,6 +22,12 @@
 
 如果你是需要访问国内版Office 365，你目前只能使用AAD 1.0的注册方式，在<https://portal.azure.cn>进行注册，请参考[这篇文章](https://github.com/chenxizhang/office365dev/blob/master/docs/applicationregisteration.md)。
 
+这个模板范例，至少需要三个委派权限（Delegate Permission）
+
+1. Files.Read.All
+1. Mail.Read
+1. User.Read
+
 ## 安装
 
 你通过 `dotnet new -i chenxizhang.dotnetcore.msgraph.console.CSharp` 即可安装这个项目模板。
@@ -33,11 +39,14 @@
 1. 最简单的用法 `dotnet new graphconsole` 将创建一个模板实现，你将使用我预先创建好的一个clientid访问到Office 365国际版。
 1. 通过指定`clientid`参数，明确使用你的应用程序来访问Office 365， 这是我最推荐的，语法是 `dotnet new graphconsole --clientid 你创建的应用程序编号`。
 1. 通过`instance`参数，指定你要访问的是国际版还是国内版。国际版是默认的，而如果要指定国内版，则需要用如下的语法 `dotnet new graphconsole --instance gallatin --clientid 你创建的应用程序编号`。
+1. 通过`version`参数，指定你要访问的Graph API的版本，默认为`v1.0`，目前还支持`beta`。
 
 另外还有两个通用参数
 
 1. 通过指定`name` 可以改变模板生成的项目名称，以及默认的namespace名称。例如 `dotnet new graphconsole -n mynamespace`。
 1. 通过指定`output`可以指定生成新的项目目录。例如 `dotnet new graphconsole -o test`。
+
+一旦创建好项目，你可以直接通过`dotnet run`运行，或者在`Visual Studio Code`中编辑后再运行。
 
 ## 卸载
 
