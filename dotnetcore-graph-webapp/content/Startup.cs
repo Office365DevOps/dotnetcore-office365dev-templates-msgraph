@@ -1,4 +1,16 @@
-﻿using System;
+/*
+作者：陈希章 Ares Chen
+时间：2018年4月25日
+说明：
+    这是一个可以快速通过Microsoft Graph访问到Office 365资源的网站应用程序模板。
+    目前该模板同时支持国际版和国内版。
+
+关于此模板的使用以及问题反馈，请访问 https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-webapp
+Office 365开发入门指南，请参考 https://github.com/chenxizhang/office365dev 
+更多模板请参考 https://github.com/chenxizhang/dotnetcore-office365dev-templates 
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,15 +31,32 @@ using System.Text;
 
 namespace content
 {
-   public class Startup
+    public class Startup
     {
+        string clientid, authority, adminconsent, resource, secret;
+        string ObjectIdentifierType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
+        
+        public Startup(){
+            #region parameters
+            
 
-        public  string authority ="https://login.microsoftonline.com/common";
-        public  string resource ="https://graph.microsoft.com";
-        public  string clientid ="5200f0d2-0ab3-4cc4-bb13-3506a04106e0";
-        public  string secret ="fthpNSD50~#ppuWHNE130-+";
+            clientid = "{{clientId}}";
+            secret = "{{secret}}";
 
-        public  string ObjectIdentifierType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
+            //#if(instance=="global")
+            authority ="https://login.microsoftonline.com/common";
+            resource="https://graph.microsoft.com";
+            
+
+            //#else
+            adminconsent ="https://login.chinacloudapi.cn/common/adminconsent?client_id={{clientId}}&state=12345&redirect_uri=http://localhost";
+            authority ="https://login.chinacloudapi.cn/common";
+            resource="https://microsoftgraph.chinacloudapi.cn";
+            //#endif
+            #endregion
+
+        }
+
 
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -43,33 +72,39 @@ namespace content
                 sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
             })
-                .AddOpenIdConnect(options =>{
+                .AddOpenIdConnect(options =>
+                {
                     options.Authority = authority;
                     options.Resource = resource;
                     options.ClientId = clientid;
-                    options.ClientSecret =secret;
+                    options.ClientSecret = secret;
                     options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
-                    options.TokenValidationParameters = new TokenValidationParameters{
-                        ValidateIssuer =false
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false
                     };
-                    options.Events = new OpenIdConnectEvents{
-                        OnTicketReceived =context =>{
+                    options.Events = new OpenIdConnectEvents
+                    {
+                        OnTicketReceived = context =>
+                        {
                             return Task.CompletedTask;
                         },
-                        OnAuthenticationFailed = async (context) =>{
+                        OnAuthenticationFailed = async (context) =>
+                        {
                             await context.Response.WriteAsync("Fail");
                         },
-                        OnAuthorizationCodeReceived = async(context)=>{
+                        OnAuthorizationCodeReceived = async (context) =>
+                        {
                             var code = context.ProtocolMessage.Code;
 
                             var memorycache = context.HttpContext.RequestServices.GetRequiredService<IMemoryCache>();
                             var identifier = context.Principal.FindFirst(ObjectIdentifierType).Value;
-                            var sessionTokencache = new SessionTokenCache(identifier,memorycache);
+                            var sessionTokencache = new SessionTokenCache(identifier, memorycache);
 
-                            var ctx = new AuthenticationContext(authority,sessionTokencache.GetCacheInstance());
-                            var result = await ctx.AcquireTokenByAuthorizationCodeAsync(code,new Uri("http://localhost:5000/signin-oidc"),new ClientCredential(clientid,secret));
-                            context.HandleCodeRedemption(result.AccessToken,result.IdToken);
-                            
+                            var ctx = new AuthenticationContext(authority, sessionTokencache.GetCacheInstance());
+                            var result = await ctx.AcquireTokenByAuthorizationCodeAsync(code, new Uri("http://localhost:5000/signin-oidc"), new ClientCredential(clientid, secret));
+                            context.HandleCodeRedemption(result.AccessToken, result.IdToken);
+
                         }
                     };
                 })
@@ -88,35 +123,87 @@ namespace content
 
             app.UseAuthentication();
 
-            app.Map("/test",builder=>{
-                
-                builder.Run(async (context)=>{
-                    await context.Response.WriteAsync("中文");
+            Func<HttpContext, GraphServiceClient> getGraphServiceClient = (context) =>
+            {
+                var identifier = context.User.FindFirst(ObjectIdentifierType).Value;
+                var memorycache = context.RequestServices.GetRequiredService<IMemoryCache>();
+                var sessionTokencache = new SessionTokenCache(identifier, memorycache);
+                var ctx = new AuthenticationContext(authority, sessionTokencache.GetCacheInstance());
+                var result = ctx.AcquireTokenSilentAsync(resource, new ClientCredential(clientid, secret), new UserIdentifier(identifier, UserIdentifierType.UniqueId)).Result;
+
+                var graphserviceClient = new GraphServiceClient(new DelegateAuthenticationProvider(async (request) =>
+                {
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", result.AccessToken);
+                    await Task.FromResult(0);
+                }))
+                {
+                    BaseUrl = $"{resource}/{{version}}"
+                };
+
+                return graphserviceClient;
+
+            };
+
+
+            app.Map("/messages", (builder) =>
+            {
+                builder.Run(async (context) =>
+                {
+                    context.Response.ContentType = "text/html;charset=utf-8";
+
+                    if (context.User.Identity.IsAuthenticated)
+                    {
+                        var client = getGraphServiceClient(context);
+                        var messages = await client.Me.Messages.Request().GetAsync();
+                        await context.Response.WriteAsync($"<h1>我的邮件</h1>{string.Join("<br />", messages.Select(x => x.Subject))}", Encoding.UTF8);
+                    }
+                    else
+                    {
+                        await AuthenticationHttpContextExtensions.ChallengeAsync(context, OpenIdConnectDefaults.AuthenticationScheme);
+                    }
                 });
             });
+            app.Map("/files", (builder) =>
+            {
+                builder.Run(async (context) =>
+                {
+                    context.Response.ContentType = "text/html;charset=utf-8";
 
+                    if (context.User.Identity.IsAuthenticated)
+                    {
+                        var client = getGraphServiceClient(context);
+                        var files = await client.Me.Drive.Root.Children.Request().GetAsync();
+                        await context.Response.WriteAsync($"<h1>我的文件</h1>{string.Join("<br />", files.Select(x => x.Name))}", Encoding.UTF8);
+                    }
+                    else
+                    {
+                        await AuthenticationHttpContextExtensions.ChallengeAsync(context, OpenIdConnectDefaults.AuthenticationScheme);
+                    }
+                });
+            });
             app.Run(async (context) =>
             {
 
-                if(context.User.Identity.IsAuthenticated){
+                context.Response.ContentType = "text/html;charset=utf-8";
 
-                    var identifier = context.User.FindFirst(ObjectIdentifierType).Value;
-                    var memorycache = context.RequestServices.GetRequiredService<IMemoryCache>();
-                    var sessionTokencache = new SessionTokenCache(identifier,memorycache);
-                    var ctx = new AuthenticationContext(authority,sessionTokencache.GetCacheInstance());
-                    var result =await ctx.AcquireTokenSilentAsync(resource,new ClientCredential(clientid,secret),new UserIdentifier(identifier,UserIdentifierType.UniqueId));
-                    
-                    var graphserviceClient = new GraphServiceClient(new DelegateAuthenticationProvider(async(request) => {
-                        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", result.AccessToken);
-                        await Task.FromResult(0);
-                    }));
+                if (context.User.Identity.IsAuthenticated)
+                {
 
+                    var client = getGraphServiceClient(context);
+                    var me = await client.Me.Request().GetAsync();
+                    var sb = new StringBuilder();
+                    sb.Append("<h2>欢迎使用Microsoft Graph</h2>");
+                    sb.Append("<p>个人信息</p>");
+                    sb.Append($"<p>姓名:{me.DisplayName}</p>");
+                    sb.Append($"<p>邮箱:{me.UserPrincipalName}</p>");
+                    sb.Append($"<p><a href='/messages'>我的邮件</p>");
+                    sb.Append($"<p><a href='/files'>我的文件</p>");
 
-                    var me =await graphserviceClient.Me.Request().GetAsync();
-                    await context.Response.WriteAsync(me.DisplayName,Encoding.UTF8);
+                    await context.Response.WriteAsync(sb.ToString(), Encoding.UTF8);
                 }
-                else{
-                    await AuthenticationHttpContextExtensions.ChallengeAsync(context,OpenIdConnectDefaults.AuthenticationScheme);
+                else
+                {
+                    await AuthenticationHttpContextExtensions.ChallengeAsync(context, OpenIdConnectDefaults.AuthenticationScheme);
                 }
             });
         }
