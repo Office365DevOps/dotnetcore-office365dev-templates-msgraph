@@ -26,7 +26,7 @@
 1. Mail.Read
 1. User.Read
 
-不管你采用哪种方式注册，请将Reply Url中设置为 http://localhost:5000/signin-odic
+不管你采用哪种方式注册，请将Reply Url中设置为 <http://localhost:5000/signin-odic>
 
 ## 安装
 
