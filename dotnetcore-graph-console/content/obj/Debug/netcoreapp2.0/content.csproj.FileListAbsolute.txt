@@ -1,0 +1,10 @@
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\bin\Debug\netcoreapp2.0\content.deps.json
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\bin\Debug\netcoreapp2.0\content.runtimeconfig.json
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\bin\Debug\netcoreapp2.0\content.runtimeconfig.dev.json
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\bin\Debug\netcoreapp2.0\content.dll
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\bin\Debug\netcoreapp2.0\content.pdb
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\obj\Debug\netcoreapp2.0\content.csproj.CoreCompileInputs.cache
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\obj\Debug\netcoreapp2.0\content.AssemblyInfoInputs.cache
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\obj\Debug\netcoreapp2.0\content.AssemblyInfo.cs
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\obj\Debug\netcoreapp2.0\content.dll
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\obj\Debug\netcoreapp2.0\content.pdb
