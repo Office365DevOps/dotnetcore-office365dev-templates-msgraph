@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using content.Models;
 using Microsoft.AspNetCore.Authorization;
-using content.Helpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
 
@@ -18,9 +17,9 @@ namespace content.Controllers
 
         private readonly IConfiguration _configuration;
         private readonly IHostingEnvironment _env;
-        private readonly IGraphSdkHelper _graphSdkHelper;
+        private readonly IGraphSDKHelper _graphSdkHelper;
 
-        public HomeController(IConfiguration configuration, IHostingEnvironment hostingEnvironment, IGraphSdkHelper graphSdkHelper)
+        public HomeController(IConfiguration configuration, IHostingEnvironment hostingEnvironment, IGraphSDKHelper graphSdkHelper)
         {
             _configuration = configuration;
             _env = hostingEnvironment;
@@ -32,7 +31,7 @@ namespace content.Controllers
             var identifier = User.FindFirst(Startup.ObjectIdentifierType)?.Value;
 
             // Initialize the GraphServiceClient.
-            var graphClient = _graphSdkHelper.GetAuthenticatedClient(identifier);
+            var graphClient = _graphSdkHelper.GetServiceClient(identifier,Request.HttpContext);
 
             var me = graphClient.Me.Request().GetAsync().Result;
             ViewBag.me = me;

@@ -1,102 +1,95 @@
-﻿/* 
-*  Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. 
-*  See LICENSE in the source repository root for complete license information. 
-*/
-
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Identity.Client;
 using System.Text;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
-namespace content.Helpers
+public class SessionTokenCache
 {
-    // Store the user's token information.
-    public class SessionTokenCache
+    private static readonly object FileLock = new object();
+    private readonly string _cacheId;
+    private readonly IMemoryCache _memoryCache;
+    private TokenCache _cache = new TokenCache();
+
+    public SessionTokenCache(string userId, IMemoryCache memoryCache)
     {
-        private static readonly object FileLock = new object();
-        private readonly string _cacheId;
-        private readonly IMemoryCache _memoryCache;
-        private TokenCache _cache = new TokenCache();
+        // not object, we want the SUB
+        _cacheId = userId + "_TokenCache";
+        _memoryCache = memoryCache;
 
-        public SessionTokenCache(string userId, IMemoryCache memoryCache)
+        Load();
+    }
+
+    public TokenCache GetCacheInstance()
+    {
+        _cache.BeforeAccess = BeforeAccessNotification;
+        _cache.AfterAccess = AfterAccessNotification;
+
+        Load();
+
+        return _cache;
+    }
+
+    public void SaveUserStateValue(string state)
+    {
+        lock (FileLock)
         {
-            // not object, we want the SUB
-            _cacheId = userId + "_TokenCache";
-            _memoryCache = memoryCache;
+            _memoryCache.Set(_cacheId + "_state", Encoding.ASCII.GetBytes(state));
+        }
+    }
 
-            Load();
+    public string ReadUserStateValue()
+    {
+        string state;
+        lock (FileLock)
+        {
+            state = Encoding.ASCII.GetString(_memoryCache.Get(_cacheId + "_state") as byte[]);
         }
 
-        public TokenCache GetCacheInstance()
-        {
-            _cache.SetBeforeAccess(BeforeAccessNotification);
-            _cache.SetAfterAccess(AfterAccessNotification);
-            Load();
+        return state;
+    }
 
-            return _cache;
+    public void Load()
+    {
+        lock (FileLock)
+        {
+            _cache.Deserialize(_memoryCache.Get(_cacheId) as byte[]);
         }
+    }
 
-        public void SaveUserStateValue(string state)
+    public void Persist()
+    {
+        lock (FileLock)
         {
-            lock (FileLock)
-            {
-                _memoryCache.Set(_cacheId + "_state", Encoding.ASCII.GetBytes(state));
-            }
+            // reflect changes in the persistent store
+            _memoryCache.Set(_cacheId, _cache.Serialize());
+            // once the write operation took place, restore the HasStateChanged bit to false
+            _cache.HasStateChanged = false;
         }
+    }
 
-        public string ReadUserStateValue()
+    // Empties the persistent store.
+    public void Clear()
+    {
+        _cache = null;
+        lock (FileLock)
         {
-            string state;
-            lock (FileLock)
-            {
-                state = Encoding.ASCII.GetString(_memoryCache.Get(_cacheId + "_state") as byte[]);
-            }
-
-            return state;
+            _memoryCache.Remove(_cacheId);
         }
+    }
 
-        public void Load()
-        {
-            lock (FileLock)
-            {
-                _cache.Deserialize(_memoryCache.Get(_cacheId) as byte[]);
-            }
-        }
+    // Triggered right before MSAL needs to access the cache.
+    // Reload the cache from the persistent store in case it changed since the last access.
+    private void BeforeAccessNotification(TokenCacheNotificationArgs args)
+    {
+        Load();
+    }
 
-        public void Persist()
+    // Triggered right after MSAL accessed the cache.
+    private void AfterAccessNotification(TokenCacheNotificationArgs args)
+    {
+        // if the access operation resulted in a cache update
+        if (_cache.HasStateChanged)
         {
-            lock (FileLock)
-            {
-                // reflect changes in the persistent store
-                _memoryCache.Set(_cacheId, _cache.Serialize());
-                // once the write operation took place, restore the HasStateChanged bit to false
-                _cache.HasStateChanged = false;
-            }
-        }
-
-        // Empties the persistent store.
-        public void Clear()
-        {
-            _cache = null;
-            lock (FileLock) {
-                _memoryCache.Remove(_cacheId);
-            }
-        }
-
-        // Triggered right before MSAL needs to access the cache.
-        // Reload the cache from the persistent store in case it changed since the last access.
-        private void BeforeAccessNotification(TokenCacheNotificationArgs args)
-        {
-            Load();
-        }
-
-        // Triggered right after MSAL accessed the cache.
-        private void AfterAccessNotification(TokenCacheNotificationArgs args)
-        {
-            // if the access operation resulted in a cache update
-            if (_cache.HasStateChanged)
-            {
-                Persist();
-            }
+            Persist();
         }
     }
 }

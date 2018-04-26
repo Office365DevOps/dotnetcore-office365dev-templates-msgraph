@@ -1,44 +1,35 @@
-﻿/* 
-*  Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. 
-*  See LICENSE in the source repository root for complete license information. 
-*/
-
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Graph;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
-namespace content.Helpers
+
+public class GraphSDKHelper : IGraphSDKHelper
 {
-    public class GraphSdkHelper : IGraphSdkHelper
+    private GraphSettings settings;
+    public GraphSDKHelper(GraphSettings _settings)
     {
-        private readonly IGraphAuthProvider _authProvider;
-        private GraphServiceClient _graphClient;
-
-        public GraphSdkHelper(IGraphAuthProvider authProvider)
-        {
-            _authProvider = authProvider;
-        }
-
-        // Get an authenticated Microsoft Graph Service client.
-        public GraphServiceClient GetAuthenticatedClient(string userId)
-        {
-            _graphClient = new GraphServiceClient(new DelegateAuthenticationProvider(
-                async requestMessage =>
-                {
-                    // Passing tenant ID to the sample auth provider to use as a cache key
-                    var accessToken = await _authProvider.GetUserAccessTokenAsync(userId);
-
-                    // Append the access token to the request
-                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-                    
-                    // This header identifies the sample in the Microsoft Graph service. If extracting this code for your project please remove.
-                    requestMessage.Headers.Add("dotnetcoretemplate", "https://github.com/chenxizhang/dotnetcore-office365dev-templates");
-                }));
-
-            return _graphClient;
-        }
+        settings = _settings;
     }
-    public interface IGraphSdkHelper
+    public GraphServiceClient GetServiceClient(string identifier, HttpContext context)
     {
-        GraphServiceClient GetAuthenticatedClient(string userId);
+        var memorycache = context.RequestServices.GetRequiredService<IMemoryCache>();
+        var sessionTokencache = new SessionTokenCache(identifier, memorycache);
+        var ctx = new AuthenticationContext(settings.Authority, sessionTokencache.GetCacheInstance());
+        var result = ctx.AcquireTokenSilentAsync(settings.Resource, new ClientCredential(settings.ClientId, settings.Secret), new UserIdentifier(identifier, UserIdentifierType.UniqueId)).Result;
+
+        var graphserviceClient = new GraphServiceClient(new DelegateAuthenticationProvider(async (request) =>
+        {
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", result.AccessToken);
+            await Task.FromResult(0);
+        }))
+        {
+            BaseUrl = $"{settings.Resource}/{settings.Version}"
+        };
+
+        return graphserviceClient;
     }
 }

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "98fbabead5cf283694b0a32d5deea5d58f87f615"
+    "signature": "e3757d5e0e98b3138327a58f52a93df6e49c4cc9"
   },
   "compilationOptions": {
     "defines": [
@@ -25,7 +25,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.0.6",
           "Microsoft.Graph": "1.6.2",
-          "Microsoft.Identity.Client": "1.1.2-preview0008",
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "3.19.3",
           "Microsoft.NETCore.App": "2.0.0"
         },
         "runtime": {
@@ -1738,7 +1738,7 @@
           "Microsoft.Azure.KeyVault": "2.3.2",
           "Microsoft.Extensions.Configuration": "2.0.1",
           "Microsoft.Extensions.Configuration.FileExtensions": "2.0.1",
-          "Microsoft.IdentityModel.Clients.ActiveDirectory": "3.14.1"
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "3.19.3"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Configuration.AzureKeyVault.dll": {}
@@ -2187,22 +2187,7 @@
           "lib/netstandard1.1/Microsoft.Graph.Core.dll": {}
         }
       },
-      "Microsoft.Identity.Client/1.1.2-preview0008": {
-        "dependencies": {
-          "NETStandard.Library": "2.0.0",
-          "System.Runtime.Serialization.Json": "4.3.0",
-          "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Security.Cryptography.X509Certificates": "4.3.0",
-          "System.Xml.XDocument": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/Microsoft.Identity.Client.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.3/Microsoft.Identity.Client.dll": {}
-        }
-      },
-      "Microsoft.IdentityModel.Clients.ActiveDirectory/3.14.1": {
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/3.19.3": {
         "dependencies": {
           "NETStandard.Library": "2.0.0",
           "System.Runtime.Serialization.Json": "4.3.0",
@@ -5086,19 +5071,12 @@
       "path": "microsoft.graph.core/1.6.2",
       "hashPath": "microsoft.graph.core.1.6.2.nupkg.sha512"
     },
-    "Microsoft.Identity.Client/1.1.2-preview0008": {
+    "Microsoft.IdentityModel.Clients.ActiveDirectory/3.19.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-bzcLQcBbyaQ5qVCTj2Tewb6JF51tRi33cqvMfy+CkZzZbdHqKlY6lv42Tm6B4kfWMvySsHj4O5kR9BSSipocMg==",
-      "path": "microsoft.identity.client/1.1.2-preview0008",
-      "hashPath": "microsoft.identity.client.1.1.2-preview0008.nupkg.sha512"
-    },
-    "Microsoft.IdentityModel.Clients.ActiveDirectory/3.14.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-GlyzF4FWsn3LXC6rrzw6Yg2nMbGLx+7JS9a6Z8n7jhqPa5cMiNEX01tBUO1v3A9p1mk+gQzHWJheAsSpOLp/ew==",
-      "path": "microsoft.identitymodel.clients.activedirectory/3.14.1",
-      "hashPath": "microsoft.identitymodel.clients.activedirectory.3.14.1.nupkg.sha512"
+      "sha512": "sha512-PEyWSyJ0j6qdI/clbz2lf1DiQy3c89Ia7GZPQk9BFMR6wstZFLovzc1gghN8U387ZU2ZZ9tj8pc5YpoqH6I6OA==",
+      "path": "microsoft.identitymodel.clients.activedirectory/3.19.3",
+      "hashPath": "microsoft.identitymodel.clients.activedirectory.3.19.3.nupkg.sha512"
     },
     "Microsoft.IdentityModel.Logging/1.1.4": {
       "type": "package",

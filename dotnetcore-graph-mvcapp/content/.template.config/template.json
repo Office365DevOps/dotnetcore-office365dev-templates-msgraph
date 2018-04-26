@@ -1,0 +1,66 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Ares Chen | 陈希章",
+    "classifications": [
+        "Common",
+        "MVC"
+    ],
+    "identity": "chenxizhang.dotnetcore.msgraph.mvcapp.CSharp",
+    "name": "Web MVC application using Microsoft Graph",
+    "groupIdentity": "chenxizhang.dotnetcore.msgraph.mvcapp",
+    "shortName": "graphmvcapp",
+    "sourceName": "content",
+    "primaryOutputs": [
+        {
+            "path": "content.csproj"
+        }
+    ],
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "postActions": [
+        {
+            "description": "dotnet restore",
+            "manualInstructions": [
+                {
+                    "text": "Run 'dotnet restore'"
+                }
+            ],
+            "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+            "continueOnError": true
+        }
+    ],
+    "symbols": {
+        "instance": {
+            "type": "parameter",
+            "datatype": "choice",
+            "choices": [
+                {
+                    "choice": "global"
+                },
+                {
+                    "choice": "gallatin"
+                }
+            ],
+            "defaultValue": "global"
+        },
+        "clientid": {
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": "5200f0d2-0ab3-4cc4-bb13-3506a04106e0",
+            "replaces": "{{clientId}}"
+        },
+        "secret": {
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": "fthpNSD50~#ppuWHNE130-+",
+            "replaces": "{{secret}}"
+        },
+        "version": {
+            "type": "parameter",
+            "replaces": "{{version}}",
+            "defaultValue": "v1.0"
+        }
+    }
+}
