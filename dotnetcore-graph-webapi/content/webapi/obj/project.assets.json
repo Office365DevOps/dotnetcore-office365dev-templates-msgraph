@@ -2307,6 +2307,34 @@
           "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.dll": {}
         }
       },
+      "Microsoft.Graph/1.8.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Graph.Core": "1.8.1",
+          "NETStandard.Library": "1.6.0",
+          "Newtonsoft.Json": "[9.0.1, 12.0.0)",
+          "System.Net.Http": "4.3.1"
+        },
+        "compile": {
+          "lib/netstandard1.1/Microsoft.Graph.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Microsoft.Graph.dll": {}
+        }
+      },
+      "Microsoft.Graph.Core/1.8.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "Newtonsoft.Json": "[9.0.1, 12.0.0)"
+        },
+        "compile": {
+          "lib/netstandard1.1/Microsoft.Graph.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Microsoft.Graph.Core.dll": {}
+        }
+      },
       "Microsoft.IdentityModel.Clients.ActiveDirectory/3.14.1": {
         "type": "package",
         "dependencies": {
@@ -3631,7 +3659,7 @@
           "lib/netstandard1.3/System.Linq.Queryable.dll": {}
         }
       },
-      "System.Net.Http/4.3.0": {
+      "System.Net.Http/4.3.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -6639,6 +6667,32 @@
         "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.xml",
         "microsoft.extensions.webencoders.2.0.1.nupkg.sha512",
         "microsoft.extensions.webencoders.nuspec"
+      ]
+    },
+    "Microsoft.Graph/1.8.1": {
+      "sha512": "RTd59ipChmKiLSZ0Ooj/eunnVUkjF474TO4WnnVREMDxIkkiv9dbxmbANPPTdKjSlMyJmBbGO53+6YwnKbMieg==",
+      "type": "package",
+      "path": "microsoft.graph/1.8.1",
+      "files": [
+        "lib/net45/Microsoft.Graph.dll",
+        "lib/net45/Microsoft.Graph.xml",
+        "lib/netstandard1.1/Microsoft.Graph.dll",
+        "lib/netstandard1.1/Microsoft.Graph.xml",
+        "microsoft.graph.1.8.1.nupkg.sha512",
+        "microsoft.graph.nuspec"
+      ]
+    },
+    "Microsoft.Graph.Core/1.8.1": {
+      "sha512": "qsGjZiKPGnqxRcY1tYwQftyfmWvjzMwD3z3qFTVyWH7i6xmvgvbS1vzEN9CmwJTTn1KXD0ijH9Lu2w1IuGbwCw==",
+      "type": "package",
+      "path": "microsoft.graph.core/1.8.1",
+      "files": [
+        "lib/net45/Microsoft.Graph.Core.dll",
+        "lib/net45/Microsoft.Graph.Core.xml",
+        "lib/netstandard1.1/Microsoft.Graph.Core.dll",
+        "lib/netstandard1.1/Microsoft.Graph.Core.xml",
+        "microsoft.graph.core.1.8.1.nupkg.sha512",
+        "microsoft.graph.core.nuspec"
       ]
     },
     "Microsoft.IdentityModel.Clients.ActiveDirectory/3.14.1": {
@@ -9653,10 +9707,10 @@
         "system.linq.queryable.nuspec"
       ]
     },
-    "System.Net.Http/4.3.0": {
-      "sha512": "sYg+FtILtRQuYWSIAuNOELwVuVsxVyJGWQyOnlAzhV4xvhyFnON1bAzYYC+jjRW8JREM45R0R5Dgi8MTC5sEwA==",
+    "System.Net.Http/4.3.1": {
+      "sha512": "UrTyRczM3ZvNk6oetBuwlu67MFKKRva+r7bw4JDVZ6Y2IukyZ24td5ppsieu/4yZlogVAIuZul9GIQ3hoiz0yA==",
       "type": "package",
-      "path": "system.net.http/4.3.0",
+      "path": "system.net.http/4.3.1",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -9729,7 +9783,7 @@
         "runtimes/win/lib/net46/System.Net.Http.dll",
         "runtimes/win/lib/netcore50/System.Net.Http.dll",
         "runtimes/win/lib/netstandard1.3/System.Net.Http.dll",
-        "system.net.http.4.3.0.nupkg.sha512",
+        "system.net.http.4.3.1.nupkg.sha512",
         "system.net.http.nuspec"
       ]
     },
@@ -12532,6 +12586,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "Microsoft.AspNetCore.All >= 2.0.6",
+      "Microsoft.Graph >= 1.8.1",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
   },
@@ -12542,22 +12597,24 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arechen\\dotnetcore-office365dev-templates\\dotnetcore-graph-webapi\\content\\content.csproj",
+      "projectUniqueName": "C:\\Users\\arechen\\dotnetcore-office365dev-templates\\dotnetcore-graph-webapi\\content\\webapi\\content.csproj",
       "projectName": "content",
-      "projectPath": "C:\\Users\\arechen\\dotnetcore-office365dev-templates\\dotnetcore-graph-webapi\\content\\content.csproj",
+      "projectPath": "C:\\Users\\arechen\\dotnetcore-office365dev-templates\\dotnetcore-graph-webapi\\content\\webapi\\content.csproj",
       "packagesPath": "C:\\Users\\arechen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arechen\\dotnetcore-office365dev-templates\\dotnetcore-graph-webapi\\content\\obj\\",
+      "outputPath": "C:\\Users\\arechen\\dotnetcore-office365dev-templates\\dotnetcore-graph-webapi\\content\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\arechen\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\arechen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -12577,6 +12634,10 @@
           "Microsoft.AspNetCore.All": {
             "target": "Package",
             "version": "[2.0.6, )"
+          },
+          "Microsoft.Graph": {
+            "target": "Package",
+            "version": "[1.8.1, )"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",

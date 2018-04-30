@@ -8,3 +8,4 @@ C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\cont
 C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\obj\Debug\netcoreapp2.0\content.AssemblyInfo.cs
 C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\obj\Debug\netcoreapp2.0\content.dll
 C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\obj\Debug\netcoreapp2.0\content.pdb
+C:\Users\arechen\dotnetcore-office365dev-templates\dotnetcore-graph-console\content\obj\Debug\netcoreapp2.0\content.csprojResolveAssemblyReference.cache

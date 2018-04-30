@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using System.Security.Cryptography.X509Certificates;
 
 namespace content
 {
@@ -29,25 +30,17 @@ namespace content
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("FSimuFrFNoC0sJXGmv13nNZceDc"));
             var tokenValidationParameters = new TokenValidationParameters
             {
-                // The signing key must match!
-                ValidateIssuerSigningKey = true,
-                ValidateAudience = false,
-                ValidateIssuer = false,
-                IssuerSigningKeys = new List<SecurityKey> { signingKey },
-
-
-                // Validate the token expiry
-                ValidateLifetime = true,
+                SaveSigninToken =true,
+                ValidAudience ="https://office365devlabs.onmicrosoft.com/TodoListService-OBO",
+                ValidIssuer ="https://sts.windows.net/59723f6b-2d14-49fe-827a-8d04f9fe7a68/",
+                IssuerSigningKey =new X509SecurityKey(new X509Certificate2(Convert.FromBase64String("MIIDBTCCAe2gAwIBAgIQev76BWqjWZxChmKkGqoAfDANBgkqhkiG9w0BAQsFADAtMSswKQYDVQQDEyJhY2NvdW50cy5hY2Nlc3Njb250cm9sLndpbmRvd3MubmV0MB4XDTE4MDIxODAwMDAwMFoXDTIwMDIxOTAwMDAwMFowLTErMCkGA1UEAxMiYWNjb3VudHMuYWNjZXNzY29udHJvbC53aW5kb3dzLm5ldDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMgmGiRfLh6Fdi99XI2VA3XKHStWNRLEy5Aw/gxFxchnh2kPdk/bejFOs2swcx7yUWqxujjCNRsLBcWfaKUlTnrkY7i9x9noZlMrijgJy/Lk+HH5HX24PQCDf+twjnHHxZ9G6/8VLM2e5ZBeZm+t7M3vhuumEHG3UwloLF6cUeuPdW+exnOB1U1fHBIFOG8ns4SSIoq6zw5rdt0CSI6+l7b1DEjVvPLtJF+zyjlJ1Qp7NgBvAwdiPiRMU4l8IRVbuSVKoKYJoyJ4L3eXsjczoBSTJ6VjV2mygz96DC70MY3avccFrk7tCEC6ZlMRBfY1XPLyldT7tsR3EuzjecSa1M8CAwEAAaMhMB8wHQYDVR0OBBYEFIks1srixjpSLXeiR8zES5cTY6fBMA0GCSqGSIb3DQEBCwUAA4IBAQCKthfK4C31DMuDyQZVS3F7+4Evld3hjiwqu2uGDK+qFZas/D/eDunxsFpiwqC01RIMFFN8yvmMjHphLHiBHWxcBTS+tm7AhmAvWMdxO5lzJLS+UWAyPF5ICROe8Mu9iNJiO5JlCo0Wpui9RbB1C81Xhax1gWHK245ESL6k7YWvyMYWrGqr1NuQcNS0B/AIT1Nsj1WY7efMJQOmnMHkPUTWryVZlthijYyd7P2Gz6rY5a81DAFqhDNJl2pGIAE6HWtSzeUEh3jCsHEkoglKfm4VrGJEuXcALmfCMbdfTvtu4rlsaP2hQad+MG/KJFlenoTK34EMHeBPDCpqNDz8UVNk")))
             };
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-
             })
             .AddJwtBearer(o =>
             {
@@ -57,7 +50,7 @@ namespace content
                 {
                     OnAuthenticationFailed = c =>
                     {
-                        c.NoResult();
+                        //c.NoResult();
 
                         c.Response.StatusCode = 401;
                         c.Response.ContentType = "text/plain";
