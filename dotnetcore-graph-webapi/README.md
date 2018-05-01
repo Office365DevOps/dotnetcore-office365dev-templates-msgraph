@@ -1,4 +1,4 @@
-# Microsoft Graph 网站应用程序模板
+# Microsoft Graph Web API 模板
 
 > 作者：陈希章 发表于 2018年5月1日
 
