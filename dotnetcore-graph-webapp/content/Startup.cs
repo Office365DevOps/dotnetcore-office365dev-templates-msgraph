@@ -49,7 +49,6 @@ namespace content
             
 
             //#else
-            adminconsent ="https://login.chinacloudapi.cn/common/adminconsent?client_id={{clientId}}&state=12345&redirect_uri=http://localhost";
             authority ="https://login.chinacloudapi.cn/common";
             resource="https://microsoftgraph.chinacloudapi.cn";
             //#endif

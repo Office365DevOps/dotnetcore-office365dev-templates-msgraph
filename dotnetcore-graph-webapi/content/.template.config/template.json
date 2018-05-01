@@ -1,0 +1,81 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Ares Chen | 陈希章",
+    "classifications": [
+        "Common",
+        "Web"
+    ],
+    "identity": "chenxizhang.dotnetcore.msgraph.webapi.CSharp",
+    "name": "Web api application using Microsoft Graph",
+    "groupIdentity": "chenxizhang.dotnetcore.msgraph.webapi",
+    "shortName": "graphwebapi",
+    "sourceName": "content",
+    "primaryOutputs": [
+        {
+            "path": "webapi/content.csproj"
+        },
+        {
+            "path": "clientapp/clientapp.csproj"
+        }
+    ],
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "postActions": [
+        {
+            "description": "dotnet restore",
+            "manualInstructions": [
+                {
+                    "text": "Run 'dotnet restore'"
+                }
+            ],
+            "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+            "continueOnError": true
+        }
+    ],
+    "symbols": {
+        "instance": {
+            "type": "parameter",
+            "datatype": "choice",
+            "choices": [
+                {
+                    "choice": "global"
+                },
+                {
+                    "choice": "gallatin"
+                }
+            ],
+            "defaultValue": "global"
+        },
+        "clientid": {
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": "653052ff-3dc1-4de3-9bee-ccc268a7cbfa",
+            "replaces": "{{clientId}}"
+        },
+        "secret": {
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": "fS1b8Ba3/0L37d8veyNmifFN1MoW+yXzBvfFBW1QXj4=",
+            "replaces": "{{secret}}"
+        },
+        "tenantid":{
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": "59723f6b-2d14-49fe-827a-8d04f9fe7a68",
+            "replaces": "{{tenantid}}"
+        },
+        "obo-console-clientid":{
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": "27e28dab-6cd7-4ae9-8d61-f8fc376df55f",
+            "replaces": "{{obo-console-clientid}}"
+        },
+        "version": {
+            "type": "parameter",
+            "replaces": "{{version}}",
+            "defaultValue": "v1.0"
+        }
+    }
+}

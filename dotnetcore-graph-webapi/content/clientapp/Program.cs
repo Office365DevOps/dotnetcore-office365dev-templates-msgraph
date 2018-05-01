@@ -13,14 +13,20 @@ namespace clientapp
         {
             #region parameters
             string authority,resource,deviceloginaddr;
+            //#if(instance=="global")
             authority ="https://login.microsoftonline.com/common";
             resource="https://office365devlabs.onmicrosoft.com/TodoListService-OBO";
             deviceloginaddr="https://aka.ms/devicelogin";     
-       
+            //#else
+            authority ="https://login.chinacloudapi.cn/common";
+            resource="https://modtsp.partner.onmschina.cn/dotnet-obo-webapi";
+            deviceloginaddr="https://aka.ms/gallatindevicelogin";  
+            //#endif   
             #endregion
 
             var ctx = new AuthenticationContext(authority: authority);
-            var deviceCode = ctx.AcquireDeviceCodeAsync(resource, "27e28dab-6cd7-4ae9-8d61-f8fc376df55f").Result;
+            var deviceCode = ctx.AcquireDeviceCodeAsync(resource, "{{obo-console-clientid}}").Result;
+            
             Console.WriteLine($"请打开浏览器，访问 {deviceloginaddr},并以 {deviceCode.UserCode} 登陆");
             var result = ctx.AcquireTokenByDeviceCodeAsync(deviceCode).Result;
 
@@ -32,9 +38,6 @@ namespace clientapp
             // Call the To Do list service.
             HttpResponseMessage response = httpClient.GetAsync("http://localhost:5000/api/values").Result;
             Console.WriteLine(response.Content.ReadAsStringAsync().Result);
-
-
-
         }
     }
 }

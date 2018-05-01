@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>chenxizhang.dotnetcore.msgraph.webapi.CSharp</id>
+    <version>1.0.0</version>
+    <description>
+      web api application using Microsoft Graph。这是一个访问Graph API的web api模板，而且实现了从客户端到服务层的on-behalfof 访问流。
+    </description>
+    <authors>Ares Chen | 陈希章</authors>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+  </metadata>
+</package>
