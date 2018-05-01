@@ -20,7 +20,7 @@
 |无人值守应用程序(Graph)|chenxizhang.<br />dotnetcore.<br />msgraph.<br />serviceapp.<br />CSharp|[graphserviceapp](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-serviceapp/README.md)|支持|支持|
 |ASP.NET Web应用程序(Graph)|chenxizhang.<br />dotnetcore.<br />msgraph.<br />webapp.<br />CSharp|[graphwebapp](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-webapp/README.md)|支持|支持|
 |ASP.NET MVC应用程序(Graph)|chenxizhang.<br />dotnetcore.<br />msgraph.<br />mvcapp.<br />CSharp|[graphmvcapp](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-mvcapp/README.md)|支持|支持|
-|ASP.NET Web API 应用程序(Graph)|即将提供|即将提供|支持|支持|
+|ASP.NET Web API 应用程序(Graph)|chenxizhang.<br />dotnetcore.<br />msgraph.<br />mvcapi.<br />CSharp|[graphwebapi](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-webapi/README.md)|支持|支持|
 |Office Add-ins （Excel）|即将提供|即将提供|支持|支持|
 |SharePoint Add-ins |即将提供|即将提供|支持|支持|
 |Microsoft Teams Apps |即将提供|即将提供|支持|暂不支持|
