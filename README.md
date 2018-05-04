@@ -2,7 +2,7 @@
 
 English | [简体中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/lang/zh-cn/README.md) | [繁体中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/lang/zh-tw/README.md)
 
-> Arthur：Ares Chen  2018/4/22
+> Author：Ares Chen @ 2018/4/22
 
 ## Overview
 
