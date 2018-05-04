@@ -1,6 +1,6 @@
 # Office 365 应用开发的 .NET Core 模板库
 
-[English](../../readme.md) | 简体中文 | [繁体中文](../../lang/zh-tw/readme.md)
+[English](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/README.md) | 简体中文 | [繁体中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/lang/zh-tw/README.md)
 
 > 作者：陈希章 发表于 2018年4月22日
 
