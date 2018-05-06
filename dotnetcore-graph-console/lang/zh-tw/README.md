@@ -1,53 +1,55 @@
-# Microsoft Graph 控制台应用程序模板
+# Microsoft Graph 控制臺應用程序模板
 
-> 作者：陈希章 发表于 2018年4月22日
+[English](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/dotnetcore-graph-console/README.md) | [简体中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/dotnetcore-graph-console/lang/zh-cn/README.md) | 繁體中文
+
+> 作者：陳希章 發表於 2018年4月22日
 
 ## 概述
 
-这个项目模板可以帮助你快速建立一个控制台应用程序，并且以某个用户的身份调用Microsoft Graph的服务，实现了如下三个功能
+這個項目模板可以幫助妳快速建立壹個控制臺應用程序，並且以某個用戶的身份調用Microsoft Graph的服務，實現了如下三個功能
 
-1. 读取当前用户的基本信息
-1. 读取当前用户的邮箱收件箱（Exchange Online）中的前十封邮件
-1. 读取当前用户的个人网盘（OneDrive for Business）的根目录下面的文件列表
+1. 讀取當前用戶的基本信息
+1. 讀取當前用戶的郵箱收件箱（Exchange Online）中的前十封郵件
+1. 讀取當前用戶的個人網盤（OneDrive for Business）的根目錄下面的文件列表
 
-由于.NET Core是要跨平台的，所以在用户登陆这个行为上，不能采用原生的Windows操作系统中提供的弹出窗口，该模板采用了一种特殊的方式来实现。程序运行后会自动生成一个设备编号，并且给用户提示一个登陆的网页地址，用户在网页上面输入设备编号，会被引导到相应的Office 365的登陆页面，完成身份验证和授权后，控制台程序将收到通知，并且获取访问票据（Access Token），然后就可以尽情地调用Microsoft Graph了。
+由於.NET Core是要跨平臺的，所以在用戶登陸這個行為上，不能采用原生的Windows操作系統中提供的彈出窗口，該模板采用了壹種特殊的方式來實現。程序運行後會自動生成壹個設備編號，並且給用戶提示壹個登陸的網頁地址，用戶在網頁上面輸入設備編號，會被引導到相應的Office 365的登陸頁面，完成身份驗證和授權後，控制臺程序將收到通知，並且獲取訪問票據（Access Token），然後就可以盡情地調用Microsoft Graph了。
 
-该模板支持国际版，也支持国内版。
+該模板支持國際版，也支持國內版。
 
-## 准备
+## 準備
 
-为了使用该模板，你最好能自行注册一个应用程序。如果你对这方面的概念不熟悉，请参考 [Microsoft Graph overview](https://github.com/chenxizhang/office365dev/blob/master/docs/microsoftgraphoverview.md)的说明。
+為了使用該模板，妳最好能自行註冊壹個應用程序。如果妳對這方面的概念不熟悉，請參考 [Microsoft Graph overview](https://github.com/chenxizhang/office365dev/blob/master/docs/microsoftgraphoverview.md)的說明。
 
-如果你是需要访问国际版Office 365，建议你直接使用AAD 2.0的注册方式，在<https://apps.dev.microsoft.com>进行注册，请参考[这篇文章](https://github.com/chenxizhang/office365dev/blob/master/docs/applicationregisteration2.0.md)。
+如果妳是需要訪問國際版Office 365，建議妳直接使用AAD 2.0的註冊方式，在<https://apps.dev.microsoft.com>進行註冊，請參考[這篇文章](https://github.com/chenxizhang/office365dev/blob/master/docs/applicationregisteration2.0.md)。
 
-如果你是需要访问国内版Office 365，你目前只能使用AAD 1.0的注册方式，在<https://portal.azure.cn>进行注册，请参考[这篇文章](https://github.com/chenxizhang/office365dev/blob/master/docs/applicationregisteration.md)。
+如果妳是需要訪問國內版Office 365，妳目前只能使用AAD 1.0的註冊方式，在<https://portal.azure.cn>進行註冊，請參考[這篇文章](https://github.com/chenxizhang/office365dev/blob/master/docs/applicationregisteration.md)。
 
-这个模板范例，至少需要三个委派权限（Delegate Permission）
+這個模板範例，至少需要三個委派權限（Delegate Permission）
 
 1. Files.Read.All
 1. Mail.Read
 1. User.Read
 
-## 安装
+## 安裝
 
-你通过 `dotnet new -i chenxizhang.dotnetcore.msgraph.console.CSharp` 即可安装这个项目模板。
+妳通過 `dotnet new -i chenxizhang.dotnetcore.msgraph.console.CSharp` 即可安裝這個項目模板。
 
 ## 使用
 
-这个模板有几个用法，分别如下
+這個模板有幾個用法，分別如下
 
-1. 最简单的用法 `dotnet new graphconsole` 将创建一个模板实现，你将使用我预先创建好的一个clientid访问到Office 365国际版。
-1. 通过指定`clientid`参数，明确使用你的应用程序来访问Office 365， 这是我最推荐的，语法是 `dotnet new graphconsole --clientid 你创建的应用程序编号`。
-1. 通过`instance`参数，指定你要访问的是国际版还是国内版。国际版是默认的，而如果要指定国内版，则需要用如下的语法 `dotnet new graphconsole --instance gallatin --clientid 你创建的应用程序编号`。
-1. 通过`version`参数，指定你要访问的Graph API的版本，默认为`v1.0`，目前还支持`beta`。
+1. 最簡單的用法 `dotnet new graphconsole` 將創建壹個模板實現，妳將使用我預先創建好的壹個clientid訪問到Office 365國際版。
+1. 通過指定`clientid`參數，明確使用妳的應用程序來訪問Office 365， 這是我最推薦的，語法是 `dotnet new graphconsole --clientid 妳創建的應用程序編號`。
+1. 通過`instance`參數，指定妳要訪問的是國際版還是國內版。國際版是默認的，而如果要指定國內版，則需要用如下的語法 `dotnet new graphconsole --instance gallatin --clientid 妳創建的應用程序編號`。
+1. 通過`version`參數，指定妳要訪問的Graph API的版本，默認為`v1.0`，目前還支持`beta`。
 
-另外还有两个通用参数
+另外還有兩個通用參數
 
-1. 通过指定`name` 可以改变模板生成的项目名称，以及默认的namespace名称。例如 `dotnet new graphconsole -n mynamespace`。
-1. 通过指定`output`可以指定生成新的项目目录。例如 `dotnet new graphconsole -o test`。
+1. 通過指定`name` 可以改變模板生成的項目名稱，以及默認的namespace名稱。例如 `dotnet new graphconsole -n mynamespace`。
+1. 通過指定`output`可以指定生成新的項目目錄。例如 `dotnet new graphconsole -o test`。
 
-一旦创建好项目，你可以直接通过`dotnet run`运行，或者在`Visual Studio Code`中编辑后再运行。
+壹旦創建好項目，妳可以直接通過`dotnet run`運行，或者在`Visual Studio Code`中編輯後再運行。
 
-## 卸载
+## 卸載
 
-你可以通过 `dotnet new -u chenxizhang.dotnetcore.msgraph.console.CSharp`可以卸载当前这个项目模板。
+妳可以通過 `dotnet new -u chenxizhang.dotnetcore.msgraph.console.CSharp`可以卸載當前這個項目模板。

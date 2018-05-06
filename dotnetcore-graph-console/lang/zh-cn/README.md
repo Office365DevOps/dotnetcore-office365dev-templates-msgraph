@@ -1,5 +1,7 @@
 # Microsoft Graph 控制台应用程序模板
 
+[English](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/dotnetcore-graph-console/README.md) | 简体中文 | [繁體中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/dotnetcore-graph-console/lang/zh-tw/README.md)
+
 > 作者：陈希章 发表于 2018年4月22日
 
 ## 概述

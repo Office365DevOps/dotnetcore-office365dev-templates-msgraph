@@ -1,6 +1,6 @@
 # Office 365 應用開發的 .NET Core 模板庫
 
-[English](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/README.md) | [简体中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/lang/zh-cn/README.md) | 繁体中文
+[English](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/README.md) | [简体中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/lang/zh-cn/README.md) | 繁體中文
 
 > 作者：陳希章 發表於 2018年4月22日
 
@@ -23,9 +23,6 @@
 |ASP.NET Web應用程序(Graph)|chenxizhang.<br />dotnetcore.<br />msgraph.<br />webapp.<br />CSharp|[graphwebapp](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-webapp/README.md)|支持|支持|
 |ASP.NET MVC應用程序(Graph)|chenxizhang.<br />dotnetcore.<br />msgraph.<br />mvcapp.<br />CSharp|[graphmvcapp](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-mvcapp/README.md)|支持|支持|
 |ASP.NET Web API 應用程序(Graph)|chenxizhang.<br />dotnetcore.<br />msgraph.<br />mvcapi.<br />CSharp|[graphwebapi](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-webapi/README.md)|支持|支持|
-|Office Add-ins （Excel）|即將提供|即將提供|支持|支持|
-|SharePoint Add-ins |即將提供|即將提供|支持|支持|
-|Microsoft Teams Apps |即將提供|即將提供|支持|暫不支持|
 
 ## 先決條件
 

@@ -1,55 +1,55 @@
-# Microsoft Graph 控制台应用程序模板
+# Microsoft Graph Console Application Template
 
-English | [简体中文]() | [繁体中文]()
+English | [简体中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/dotnetcore-graph-console/lang/zh-cn/README.md) | [繁體中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/dotnetcore-graph-console/lang/zh-tw/README.md)
 
-> 作者：陈希章 发表于 2018年4月22日
+> Author：Ares Chen @ 2018/4/22
 
-## 概述
+## Overview
 
-这个项目模板可以帮助你快速建立一个控制台应用程序，并且以某个用户的身份调用Microsoft Graph的服务，实现了如下三个功能
+This project template can help you quickly build a console application and call a Microsoft Graph service on-behalf of a user, The template implementing the following three functions:
 
-1. 读取当前用户的基本信息
-1. 读取当前用户的邮箱收件箱（Exchange Online）中的前十封邮件
-1. 读取当前用户的个人网盘（OneDrive for Business）的根目录下面的文件列表
+1. Read the basic information of the current user
+1. Read the first ten messages in the current user's mailbox inbox (Exchange Online)
+1. Read the list of files under the root directory of the current user's OneDrive for Business
 
-由于.NET Core是要跨平台的，所以在用户登陆这个行为上，不能采用原生的Windows操作系统中提供的弹出窗口，该模板采用了一种特殊的方式来实现。程序运行后会自动生成一个设备编号，并且给用户提示一个登陆的网页地址，用户在网页上面输入设备编号，会被引导到相应的Office 365的登陆页面，完成身份验证和授权后，控制台程序将收到通知，并且获取访问票据（Access Token），然后就可以尽情地调用Microsoft Graph了。
+Since .NET Core is to be cross-platform, the pop-up window provided in the native Windows operating system cannot be used for user login. This template is implemented in a special way. After the program runs, a `device code` will be automatically generated and the user will be prompted with a login webpage address. The user enters the `device code` on the webpage and will be directed to the corresponding Office 365 landing page. After the authentication and authorization are completed, the console program is executed. You will receive the notification and get the Access Token. Then you can invoke the Microsoft Graph.
 
-该模板支持国际版，也支持国内版。
+The template supports both `global` and `gallatin` office 365 environment.
 
-## 准备
+## Prerequisites
 
-为了使用该模板，你最好能自行注册一个应用程序。如果你对这方面的概念不熟悉，请参考 [Microsoft Graph overview](https://github.com/chenxizhang/office365dev/blob/master/docs/microsoftgraphoverview.md)的说明。
+In order to use this template, you'd better be able to register an application yourself. If you are not familiar with this concept, please refer to the description of [Microsoft Graph overview] (https://github.com/chenxizhang/office365dev/blob/master/docs/microsoftgraphoverview.md).
 
-如果你是需要访问国际版Office 365，建议你直接使用AAD 2.0的注册方式，在<https://apps.dev.microsoft.com>进行注册，请参考[这篇文章](https://github.com/chenxizhang/office365dev/blob/master/docs/applicationregisteration2.0.md)。
+If you need to access the international version of Office 365, it is recommended that you directly use the AAD 2.0 registration method to register at <https://apps.dev.microsoft.com>. Please refer to [this article] (https://github) .com/chenxizhang/office365dev/blob/master/docs/applicationregisteration2.0.md).
 
-如果你是需要访问国内版Office 365，你目前只能使用AAD 1.0的注册方式，在<https://portal.azure.cn>进行注册，请参考[这篇文章](https://github.com/chenxizhang/office365dev/blob/master/docs/applicationregisteration.md)。
+If you need to access the domestic version of Office 365, you can only use the AAD 1.0 registration method to register at <https://portal.azure.cn>, please refer to [this article] (https://github. Com/chenxizhang/office365dev/blob/master/docs/applicationregisteration.md).
 
-这个模板范例，至少需要三个委派权限（Delegate Permission）
+This template example requires at least three delegated permissions
 
 1. Files.Read.All
 1. Mail.Read
 1. User.Read
 
-## 安装
+## How to install the template
 
-你通过 `dotnet new -i chenxizhang.dotnetcore.msgraph.console.CSharp` 即可安装这个项目模板。
+You can install this template through `dotnet new -i chenxizhang.dotnetcore.msgraph.console.CSharp`.
 
-## 使用
+## How to use the template
 
-这个模板有几个用法，分别如下
+There are several scenarios for this template, as follows
 
-1. 最简单的用法 `dotnet new graphconsole` 将创建一个模板实现，你将使用我预先创建好的一个clientid访问到Office 365国际版。
-1. 通过指定`clientid`参数，明确使用你的应用程序来访问Office 365， 这是我最推荐的，语法是 `dotnet new graphconsole --clientid 你创建的应用程序编号`。
-1. 通过`instance`参数，指定你要访问的是国际版还是国内版。国际版是默认的，而如果要指定国内版，则需要用如下的语法 `dotnet new graphconsole --instance gallatin --clientid 你创建的应用程序编号`。
-1. 通过`version`参数，指定你要访问的Graph API的版本，默认为`v1.0`，目前还支持`beta`。
+1. The simplest usage of `dotnet new graphconsole` will create a template implementation, and you will use the clientid I ​​created in advance to access Office 365 International.
+1. By explicitly specifying the `clientid` parameter, explicitly use your application to access Office 365. This is my most recommended, the syntax is `dotnet new graphconsole --clientid' the-applicationid-you-created`.
+1. With the `instance` parameter, specify whether you want to access the ``global`` or ``gallatin`` version. The ``global`` version is the default, and if you want to specify the ``gallatin`` version, you need to use the following syntax: `dotnet new graphconsole --instance gallatin --clientid the-applicationid-you-created`.
+1. Specify the version of the Graph API you want to access via the `version` parameter. The default is `v1.0`. Currently `beta` is also supported.
 
-另外还有两个通用参数
+There are also two common parameters
 
-1. 通过指定`name` 可以改变模板生成的项目名称，以及默认的namespace名称。例如 `dotnet new graphconsole -n mynamespace`。
-1. 通过指定`output`可以指定生成新的项目目录。例如 `dotnet new graphconsole -o test`。
+1. By specifying `name` you can change the name of the project generated by the template, as well as the default namespace name. For example, `dotnet new graphconsole -n mynamespace`.
+1. You can specify to generate a new project directory by specifying `output`. For example, `dotnet new graphconsole -o test`.
 
-一旦创建好项目，你可以直接通过`dotnet run`运行，或者在`Visual Studio Code`中编辑后再运行。
+Once the project is created, you can run it directly from `dotnet run` or edit it in `Visual Studio Code` and run it again.
 
-## 卸载
+## How to uninstall the template
 
-你可以通过 `dotnet new -u chenxizhang.dotnetcore.msgraph.console.CSharp`可以卸载当前这个项目模板。
+You can uninstall this template through `dotnet new -u chenxizhang.dotnetcore.msgraph.console.CSharp`.

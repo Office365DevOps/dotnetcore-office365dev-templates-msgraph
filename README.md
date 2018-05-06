@@ -1,6 +1,6 @@
 # .NET Core Templates for Office 365 Developer
 
-English | [简体中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/lang/zh-cn/README.md) | [繁体中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/lang/zh-tw/README.md)
+English | [简体中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/lang/zh-cn/README.md) | [繁體中文](https://github.com/chenxizhang/dotnetcore-office365dev-templates/blob/master/lang/zh-tw/README.md)
 
 > Author：Ares Chen @ 2018/4/22
 
@@ -23,9 +23,6 @@ enjoy and happy coding!
 |`ASP.NET Web Application(Graph)`|chenxizhang.<br />dotnetcore.<br />msgraph.<br />webapp.<br />CSharp|[graphwebapp](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-webapp/README.md)|Yes|Yes|
 |`ASP.NET MVC Application(Graph)`|chenxizhang.<br />dotnetcore.<br />msgraph.<br />mvcapp.<br />CSharp|[graphmvcapp](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-mvcapp/README.md)|Yes|Yes|
 |`ASP.NET Web API (Graph)`|chenxizhang.<br />dotnetcore.<br />msgraph.<br />mvcapi.<br />CSharp|[graphwebapi](https://github.com/chenxizhang/dotnetcore-office365dev-templates/tree/master/dotnetcore-graph-webapi/README.md)|Yes|Yes|
-|`Office Add-ins （Excel）`|Coming soon|Coming soon|Yes|Yes|
-|`SharePoint Add-ins` |Coming soon|Coming soon|Yes|Yes|
-|`Microsoft Teams Apps` |Coming soon|Coming soon|Yes|No|
 
 ## Prerequisites
 
