@@ -39,7 +39,7 @@ Installing these templates is very simple, you just need a line of commands, `do
 
 ## How to use the template
 
-After the template installation is successful, you can see these new templates in the template list, each template has a short name, you can use the `dotnet new template-shortname1` to use these templates, such as `dotnet new graphconsole`, the command can quickly build a Microsoft Graph console application.
+After the template installation is successful, you can see these new templates in the template list, each template has a short name, you can use the `dotnet new template-shortname` to use these templates, such as `dotnet new graphconsole`, the command can quickly build a Microsoft Graph console application.
 
 Each template has some parameters to support different scenarios. The most typical parameter is `--instance`. This parameter will tell the template engine which office 365 environment you want to use. There are two options, `global` for the international version, and `gallatin` for the domestic version for China. `gloal` will be the default value for this parameter.
 
