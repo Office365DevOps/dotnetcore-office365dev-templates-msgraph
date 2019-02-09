@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\arechen\\dotnetcore-office365dev-templates\\dotnetcore-graph-mvcapp\\content\\content.csproj",
+  "TargetFramework": "netcoreapp2.0",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "MVC-2.0",
+    "LanguageVersion": "2.0",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-2.0"
+      }
+    ]
+  }
+}

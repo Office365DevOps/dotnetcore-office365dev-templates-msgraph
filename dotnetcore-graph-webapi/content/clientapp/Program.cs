@@ -27,7 +27,7 @@ namespace clientapp
             var ctx = new AuthenticationContext(authority: authority);
             var deviceCode = ctx.AcquireDeviceCodeAsync(resource, "{{obo-console-clientid}}").Result;
             
-            Console.WriteLine($"请打开浏览器，访问 {deviceloginaddr},并以 {deviceCode.UserCode} 登陆");
+            Console.WriteLine($"请打开浏览器，访问 {deviceloginaddr} ,并以 {deviceCode.UserCode} 登陆");
             var result = ctx.AcquireTokenByDeviceCodeAsync(deviceCode).Result;
 
 

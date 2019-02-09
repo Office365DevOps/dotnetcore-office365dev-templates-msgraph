@@ -46,7 +46,7 @@ namespace content
                 {
                     var ctx = new AuthenticationContext(authority: authority);
                     var deviceCode = ctx.AcquireDeviceCodeAsync(resource, "{{clientId}}").Result;
-                    Console.WriteLine($"请打开浏览器，访问{deviceloginaddr},并以 {deviceCode.UserCode} 登陆");
+                    Console.WriteLine($"请打开浏览器，访问 {deviceloginaddr} ,并以 {deviceCode.UserCode} 登陆");
                     token = ctx.AcquireTokenByDeviceCodeAsync(deviceCode).Result.AccessToken;
                 }
 
