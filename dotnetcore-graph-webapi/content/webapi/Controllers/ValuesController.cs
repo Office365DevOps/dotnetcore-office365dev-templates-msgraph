@@ -10,7 +10,7 @@ using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.Graph;
 using System.Net.Http.Headers;
 
-namespace content.Controllers
+namespace webapi.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
@@ -30,16 +30,17 @@ namespace content.Controllers
                 var clientCred = new ClientCredential(Startup.clientid, Startup.secret);
 
                 var authority = Startup.authority;
-                
+
                 var ctx = new AuthenticationContext(authority);
                 var result = ctx.AcquireTokenAsync(Startup.resource, clientCred, userAssertion).Result;
-                
+
 
                 var client = new GraphServiceClient(new DelegateAuthenticationProvider(async request =>
                 {
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", result.AccessToken);
                     await Task.FromResult(0);
-                })){
+                }))
+                {
                     BaseUrl = Startup.resource + "/{{version}}"
                 };
 

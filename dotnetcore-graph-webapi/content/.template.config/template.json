@@ -10,18 +10,15 @@
     "groupIdentity": "chenxizhang.dotnetcore.msgraph.webapi",
     "shortName": "graphwebapi",
     "sourceName": "content",
-    "primaryOutputs": [
-        {
-            "path": "webapi/content.csproj"
-        },
-        {
-            "path": "clientapp/clientapp.csproj"
-        }
-    ],
     "tags": {
         "language": "C#",
         "type": "project"
     },
+    "primaryOutputs": [
+        {
+            "path": "content.sln"
+        }
+    ],
     "postActions": [
         {
             "description": "dotnet restore",
@@ -60,13 +57,13 @@
             "defaultValue": "fS1b8Ba3/0L37d8veyNmifFN1MoW+yXzBvfFBW1QXj4=",
             "replaces": "{{secret}}"
         },
-        "tenantid":{
+        "tenantid": {
             "type": "parameter",
             "datatype": "text",
             "defaultValue": "59723f6b-2d14-49fe-827a-8d04f9fe7a68",
             "replaces": "{{tenantid}}"
         },
-        "obo-console-clientid":{
+        "obo-console-clientid": {
             "type": "parameter",
             "datatype": "text",
             "defaultValue": "27e28dab-6cd7-4ae9-8d61-f8fc376df55f",
