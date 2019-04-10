@@ -24,12 +24,12 @@ namespace content
             #region parameters
             string authority,resource,deviceloginaddr;
             //#if(instance=="gallatin")
-            authority ="https://login.chinacloudapi.cn/common/oauth2";
+            authority ="https://login.chinacloudapi.cn/common";
             resource ="https://microsoftgraph.chinacloudapi.cn";
             deviceloginaddr="https://aka.ms/gallatindevicelogin";
             
             //#else
-            authority ="https://login.microsoftonline.com/common/oauth2";
+            authority ="https://login.microsoftonline.com/common";
             resource="https://graph.microsoft.com";
             deviceloginaddr="https://aka.ms/devicelogin";     
        
